@@ -1,0 +1,9 @@
+<h1>{{ league.league_name }}</h1>
+
+<ul>
+{% for team in league.team_set.all %}
+    <li>{{ team.team_name }} -- {{ team.votes }} vote{{ team.votes|pluralize }}</li>
+{% endfor %}
+</ul>
+
+<a href="{% url 'polls:detail' league.id %}">Vote again?</a>

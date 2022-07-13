@@ -1,0 +1,12 @@
+<form action="{% url 'polls:vote' league.id %}" method="post">
+    {% csrf_token %}
+    <fieldset>
+        <legend><h1>{{ league.league_name }}</h1></legend>
+        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+        {% for team in league.team_set.all %}
+            <input type="radio" name="team" id="team{{ forloop.counter }}" value="{{ team.id }}">
+            <label for="team{{ forloop.counter }}">{{ team.team_name }}</label><br>
+        {% endfor %}
+    </fieldset>
+    <input type="submit" value="Vote">
+    </form>
